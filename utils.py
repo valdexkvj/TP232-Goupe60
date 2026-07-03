@@ -34,3 +34,7 @@ def moyenne(notes):
         notes_t.append((ns + nl) / 2)
 
 moyenne(notes)
+
+notes_s = pd.Series(notes_s)
+notes_l = pd.Series(notes_l)    
+notes_t = pd.Series(notes_t)    
