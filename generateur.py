@@ -13,8 +13,9 @@ def generer_donnees():
     graine = nom_vers_graine(ut.nomf)
     rng = np.random.default_rng(graine)
 
-    notes = rng.normal(12, 3, ut.n)
-    heures = rng.normal(15, 5, ut.n)
+    heures = rng.integers(0, 30, ut.n)
+    bruit = rng.normal(0, 2, ut.n)
+    notes = 2 + 0.6 * heures + bruit
 
     notes = np.clip(notes, 0, 20).round(2)
     heures = np.clip(heures, 0, 30).astype(int)
@@ -23,10 +24,10 @@ def generer_donnees():
     for i in range(ut.n):
         proba = rng.random()
         if notes[i] >= 12 and heures[i] >= 10:
-            o = "Scientifique" if proba <= 0.80 else "Littéraire"
+            orientation= "Scientifique" 
         else:
-            o = "Littéraire" if proba <= 0.80 else "Scientifique"
-        orientations.append(o)
+            orientation= "Littéraire" 
+        orientations.append(orientation)
 
     df = pd.DataFrame({
         "ID": [f"E{i+1}" for i in range(ut.n)],
