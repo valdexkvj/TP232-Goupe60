@@ -9,33 +9,40 @@ nom = ut.nomf #nom de l'utilisateur
 seed = sum([ord(c) for c in nom])
 
 random.seed(seed)
-match = []
-svt = []
-inf = []
-fr = []
-ang = []
-hist_geo = []
-id = []
-participation = []
+maths = []
+ids = []
+heures = []
+series = []
+
 for i in range(n):
-    match.append(random.randint(0, 20))
-    svt.append(random.randint(0, 20))
-    inf.append(random.randint(0, 20))
-    fr.append(random.randint(0, 20))
-    ang.append(random.randint(0, 20))
-    hist_geo.append(random.randint(0, 20))
-    participation.append(random.randint(0, 100))
-    id.append(f"E{i}")
+    s = random.choices(["scientifique", "littéraire"], weights=[0.3,0.7],k=1)[0]
+    series.append(s)
+
+    if s == "scientifique":
+        if random.random() < 0.7:
+            heures.append(random.randint(10, 100))
+            maths.append(random.randint(8, 20))
+            
+        else:
+            heures.append(random.randint(0, 25))
+            maths.append(random.randint(0, 15))          
+       
+    else:
+        if random.random() < 0.8:
+            heures.append(random.randint(0, 30))
+            maths.append(random.randint(0, 11))
+            
+        else:
+            heures.append(random.randint(20, 100))
+            maths.append(random.randint(8, 20))
+            
+    ids.append(f"E{i}")
 
 data = {
-    "ID":id,
-    "Match": match,
-    "SVT": svt,
-    "Informatique": inf,
-    "Français": fr,
-    "Anglais": ang,
-    "Histoire/Géographie": hist_geo,
-    "Participation": participation
+    "ID":ids,
+    "Maths": maths,
+    "series": series,
+    "Heures_d_etude": heures,
 }
 
 df = pd.DataFrame(data)
