@@ -1,10 +1,5 @@
-import pandas as pd
-from random import random
+nomf = "CHRISTELLENIQUOIZEDONGMOTCHUDZO"
+n = 200
 
-
-nom = "joyeux"
-n = 200 #taille du dataset
-
-nomf = f"data/{nom.replace(' ','_')}.csv"
-
-
+data_path = "data/eleves.csv"
+images_path = "images/"
