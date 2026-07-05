@@ -1,0 +1,14 @@
+: Classification supervisée
+Objectif : Prédire l’orientation (Scientifique ou Littéraire) d'un élève en fonction de son profil scolaire.
+1. Méthodologie :
+ Données d'entrée (Features) : Heures d'étude, Taux de présence, Note.
+ Variable cible (Target) : Orientation.
+ Processus : Nous devons diviser notre jeu de données (70% entraînement / 30% test) pour permettre au modèle d'apprendre les caractéristiques propres à chaque filière, puis de les tester sur des données inconnues.
+2. Étapes techniques clés :
+ Standardisation : Il est impératif de normaliser nos variables (heures, %, note) pour qu'elles aient le même poids dans le calcul de distance, évitant ainsi qu'une variable n'en domine une autre par effet d'échelle.
+ Algorithme : Utilisation d'un modèle type k-NN ou Arbre de décision pour établir des règles de classement.
+3. Interprétation des résultats :
+Pour valider notre modèle, nous utiliserons une matrice de confusion. Elle nous permettra de présenter :
+ Le taux de prédiction correcte pour chaque filière.
+ L'identification des éventuels biais (ex: est-ce que le modèle confond certains profils littéraires avec des profils scientifiques ?).
+Cela permet de boucler notre TP en démontrant que les données scolaires permettent effectivement de modéliser et de prédire le parcours d'orientation des élèves.
