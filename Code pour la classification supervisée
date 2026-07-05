@@ -1,0 +1,32 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import classification_report, confusion_matrix
+
+# 1. Chargement des données (supposons que ton dataframe s'appelle 'df')
+# df = pd.read_csv('donnees_eleves.csv') 
+
+# 2. Préparation des variables
+X = df[['Heures_etude', 'Taux_presence', 'Note']]
+y = df['Orientation']
+
+# 3. Séparation en jeu d'entraînement (80%) et de test (20%)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 4. Standardisation des données (indispensable pour k-NN)
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# 5. Entraînement du modèle (k-NN avec 3 voisins)
+knn = KNeighborsClassifier(n_neighbors=3)
+knn.fit(X_train, y_train)
+
+# 6. Prédiction et évaluation
+y_pred = knn.predict(X_test)
+
+print("Matrice de confusion :")
+print(confusion_matrix(y_test, y_pred))
+print("\nRapport de classification :")
+print(classification_report(y_test, y_pred))
